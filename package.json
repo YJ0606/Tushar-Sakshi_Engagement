@@ -2,7 +2,11 @@
   "name": "tushar-sakshi-engagement",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
+    "build": "echo 'Build complete'",
     "start": "node server.js"
   }
 }
