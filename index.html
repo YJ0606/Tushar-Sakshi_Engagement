@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <link rel="preload" as="video" href="">
+    <link rel="preload" as="video" href="./Invite Intro.mp4">
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -423,8 +423,8 @@
 </button>
 
 <div id="entry-gate">
-    <video id="entry-video" playsinline preload="metadata" muted>
-        <source src="C:\Users\immor\Downloads\Invite Intro.mp4" type="video/mp4">
+    <video id="entry-video" playsinline preload="metadata" muted poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'%3E%3Crect width='800' height='1200' fill='%230a0505'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='%23fff8f3' font-family='serif'%3ETushar %26 Sakshi%3C/text%3E%3C/svg%3E">
+        <source src="./Invite Intro.mp4" type="video/mp4">
     </video>
     <div id="play-overlay"></div>
 </div>
@@ -914,16 +914,36 @@ gate.addEventListener('click', async () => {
     if (mainRevealed) return;
     playOverlay.classList.add('hidden');
     try {
-        entryVideo.muted = false; 
+        entryVideo.muted = false;
         await entryVideo.play();
         try { await bgAudio.play(); audioPlaying = true; updateAudioIcon(); } catch(_) {}
     } catch(err) {
-        entryVideo.muted = true;
-        try { await entryVideo.play(); try { await bgAudio.play(); audioPlaying = true; updateAudioIcon(); } catch(_) {} } catch(e2) { revealMain(); }
+        try {
+            entryVideo.muted = true;
+            await entryVideo.play();
+            try { await bgAudio.play(); audioPlaying = true; updateAudioIcon(); } catch(_) {}
+        } catch(e2) {
+            revealMain();
+        }
     }
 });
 entryVideo.addEventListener('ended', revealMain);
 entryVideo.addEventListener('error', () => { if (!mainRevealed) setTimeout(revealMain, 500); });
+entryVideo.addEventListener('canplay', () => {
+    if (!mainRevealed && !userInteracted) {
+        playOverlay.classList.remove('hidden');
+    }
+});
+entryVideo.addEventListener('loadeddata', () => {
+    if (!mainRevealed && !userInteracted) {
+        playOverlay.classList.remove('hidden');
+    }
+});
+setTimeout(() => {
+    if (!mainRevealed && entryVideo.readyState < 2) {
+        revealMain();
+    }
+}, 2500);
 document.body.style.overflow = 'hidden';
 
 /* ================================================================
