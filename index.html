@@ -196,37 +196,16 @@
         @keyframes scrollBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
         /* ============================================================
-           3 HEARTS SCRATCH TO REVEAL SECTION
+           SCRATCH TO REVEAL SECTION
         ============================================================ */
-        #scratch-reveal-section { background: var(--cream); padding: 5rem 1.5rem; text-align: center; }
-        
-        .hearts-row {
-            display: flex; justify-content: center; align-items: center; gap: 15px;
-            flex-wrap: nowrap; width: 100%; max-width: 440px; margin: 2rem auto 0;
-        }
+        #scratch-reveal-section { position: relative; background: var(--cream); padding: 5rem 1.5rem; text-align: center; }
 
-        .heart-container {
-            position: relative; width: 30vw; max-width: 120px; aspect-ratio: 1.1 / 1;
-            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 185' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 185 C100 185, 200 125, 200 70 C200 23, 157 -10, 121.5 15 C100 31, 100 31, 100 31 C100 31, 100 31, 78.5 15 C43 -10, 0 23, 0 70 C0 125, 100 185, 100 185 Z' fill='black'/%3E%3C/svg%3E");
-            mask-size: contain; mask-repeat: no-repeat; mask-position: center;
-            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 185' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 185 C100 185, 200 125, 200 70 C200 23, 157 -10, 121.5 15 C100 31, 100 31, 100 31 C100 31, 100 31, 78.5 15 C43 -10, 0 23, 0 70 C0 125, 100 185, 100 185 Z' fill='black'/%3E%3C/svg%3E");
-            -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
-            
-            background: var(--cream-2);
-            cursor: crosshair; touch-action: none; transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-
-        .hearts-row.unlocked .heart-container {
-            animation: gentle-heart-beat 3s infinite ease-in-out;
-            background: var(--white);
-            box-shadow: 0 0 20px rgba(184,89,64,0.15);
-        }
-        .hearts-row.unlocked .heart-container:nth-child(2) { animation-delay: 0.3s; }
-        .hearts-row.unlocked .heart-container:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes gentle-heart-beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .scratch-card {
+            position: relative; width: 100%; max-width: 280px; aspect-ratio: 1.35 / 1;
+            margin: 2rem auto 0; border-radius: 1rem;
+            background: var(--cream-2); cursor: crosshair; touch-action: none;
+            box-shadow: 0 8px 30px rgba(184,89,64,0.12);
+            overflow: hidden;
         }
 
         .hidden-content {
@@ -235,13 +214,13 @@
             background: transparent; z-index: 1;
         }
         .hidden-content .label {
-            font-family: 'Tenor Sans', sans-serif; font-size: 0.55rem;
-            letter-spacing: 0.15em; color: var(--text-light); text-transform: uppercase;
-            margin-bottom: 2px;
+            font-family: 'Tenor Sans', sans-serif; font-size: 0.6rem;
+            letter-spacing: 0.2em; color: var(--text-light); text-transform: uppercase;
+            margin-bottom: 4px;
         }
         .hidden-content .value {
-            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600;
-            color: var(--terracotta); line-height: 1; text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+            font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600;
+            color: var(--terracotta); line-height: 1.2; text-shadow: 0 2px 10px rgba(255,255,255,0.8);
         }
         
         .scratch-canvas {
@@ -282,7 +261,7 @@
         /* ============================================================
            PHOTO / VIDEO SECTION
         ============================================================ */
-        #memories-section { padding: 5rem 1.5rem; background: var(--cream-2); }
+        #memories-section { position: relative; padding: 5rem 1.5rem; background: var(--cream-2); }
         .memories-frame { max-width: 420px; margin: 3rem auto 0; position: relative; }
         .memories-frame::before { content: ''; position: absolute; inset: -12px; border: 1px solid rgba(201,150,62,0.35); border-radius: 2rem; transform: rotate(2deg); }
         .memories-frame::after { content: ''; position: absolute; inset: -6px; border: 1px solid rgba(201,150,62,0.2); border-radius: 1.8rem; transform: rotate(-1deg); }
@@ -448,7 +427,7 @@
             <p style="font-family:'Tenor Sans',sans-serif;font-size:0.62rem;letter-spacing:0.3em;color:var(--terracotta);text-transform:uppercase;margin-bottom:1.25rem;">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा</p>
 
             <p class="blessings-text">
-                With the blessings of blessings of Lord Ganesha, Swami Samartha  & our respected elders,<br>
+                With the blessings of Lord Ganesha & our respected elders,<br>
                  We will be highly obliged with your presence on the occasion of Ring Ceremony of
             </p>
 
@@ -481,34 +460,19 @@
 
     <section id="scratch-reveal-section">
         <div class="text-center reveal">
-            <span class="section-label">Save The Date</span>
             <h2 class="section-heading" style="color:var(--terracotta)">Reveal Our<br>Big Day</h2>
-            <p class="reveal reveal-delay-2 mt-4" style="font-style:italic;color:var(--text-light);font-size:1.1rem;margin-bottom:1rem;">Scratch the hearts to reveal</p>
+            <p class="reveal reveal-delay-2 mt-4" style="font-style:italic;color:var(--text-light);font-size:1.1rem;margin-bottom:1rem;">Scratch to reveal our date</p>
         </div>
 
-        <div class="hearts-row reveal reveal-delay-2" id="heartsRow">
-            <div class="heart-container" id="heartContainer1">
+        <div class="reveal reveal-delay-2">
+            <div class="scratch-card" id="scratchCard">
                 <div class="hidden-content">
-                    <span class="label">DAY</span>
-                    <span class="value">16</span>
-                </div>
-                <canvas id="scratchCanvas1" class="scratch-canvas"></canvas>
-            </div>
-
-            <div class="heart-container" id="heartContainer2">
-                <div class="hidden-content">
-                    <span class="label">MONTH</span>
-                    <span class="value">Aug</span>
-                </div>
-                <canvas id="scratchCanvas2" class="scratch-canvas"></canvas>
-            </div>
-
-            <div class="heart-container" id="heartContainer3">
-                <div class="hidden-content">
-                    <span class="label">YEAR</span>
+                    <span class="label">Save The Date</span>
+                    <span class="value">16th August</span>
                     <span class="value">2026</span>
+                    <span class="value" style="font-size:1.2rem;">at 11:00 AM</span>
                 </div>
-                <canvas id="scratchCanvas3" class="scratch-canvas"></canvas>
+                <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
             </div>
         </div>
         
@@ -523,6 +487,11 @@
                 <div class="cd-item"><span id="cd-mins">00</span><small>Mins</small></div>
                 <div class="cd-item"><span id="cd-secs">00</span><small>Secs</small></div>
             </div>
+        </div>
+
+        <div class="scroll-cue">
+            <p>Scroll</p>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
     </section>
 
@@ -547,10 +516,14 @@
         <p class="text-center reveal reveal-delay-3 mt-8" style="font-style:italic;color:var(--text-light);font-size:1.1rem;">
             A moment captured in time, forever in our hearts
         </p>
+
+        <div class="scroll-cue">
+            <p>Scroll</p>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
     </section>
 
-
-    <section id="map-section" style="padding:5rem 1.5rem;background:var(--cream);">
+    <section id="map-section" style="position:relative;padding:5rem 1.5rem;background:var(--cream);">
         <div class="text-center reveal">
             <span class="section-label">Venue</span>
             <h2 class="section-heading" style="color:var(--terracotta)">Find Us<br>Here</h2>
@@ -568,17 +541,21 @@
                 </div>
                 <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--terracotta);margin-top:1.25rem;line-height:1.4;">Palm Beach Lawn and Banquets</p>
                 <p style="font-family:'Tenor Sans',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-top:0.3rem;">Sanpada, Navi Mumbai</p>
-                <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--terracotta);margin-top:0.8rem;line-height:1.4;">Engagement at 10:00 AM</p>
                 <p style="display:inline-block;margin-top:1rem;background:var(--terracotta);color:white;padding:0.7rem 1.8rem;border-radius:9999px;font-family:'Tenor Sans',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:background 0.2s ease;" onmouseover="this.style.background='var(--terra-dark)'" onmouseout="this.style.background='var(--terracotta)'">Open in Google Maps</p>
             </a>
+        </div>
+
+        <div class="scroll-cue">
+            <p>Scroll</p>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
     </section>
 
     <section id="footer-section">
         <div class="reveal" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
             <span style="font-family:'Great Vibes',cursive;font-size:clamp(3.2rem, 10vw, 5rem);color:var(--gold-light);display:block;line-height:1.35;letter-spacing:0.02em;">
-                Written in the Stars.<br>
-                Celebratedd with Love
+                Written in the Stars<br>
+                Celebrated with Love
             </span>
 
             <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.8rem;opacity:0.7;">
@@ -708,9 +685,9 @@ function startCountdown() {
 
 
 /* ================================================================
-   3 HEARTS SCRATCH TO REVEAL LOGIC
+   SCRATCH TO REVEAL LOGIC
 ================================================================ */
-class ScratchHeart {
+class ScratchCard {
     constructor(canvasId, containerId, onReveal) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
@@ -729,16 +706,14 @@ class ScratchHeart {
         this.canvas.height = this.height * dpr;
         this.ctx.scale(dpr, dpr);
 
-        // Warm Terracotta fill for scratch layer
         this.ctx.fillStyle = '#B85940';
         this.ctx.fillRect(0, 0, this.width, this.height);
-        
-        // Scratch indication text
+
         this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
-        this.ctx.font = "12px 'Tenor Sans', sans-serif";
+        this.ctx.font = "16px 'Tenor Sans', sans-serif";
         this.ctx.textAlign = "center";
         this.ctx.letterSpacing = "2px";
-        this.ctx.fillText("SCRATCH", this.width / 2, this.height / 2 + 4);
+        this.ctx.fillText("SCRATCH HERE", this.width / 2, this.height / 2 + 5);
 
         this.canvas.addEventListener('mousedown', (e) => { this.isDrawing = true; this.scratch(e); });
         this.canvas.addEventListener('touchstart', (e) => { this.isDrawing = true; this.scratch(e); }, { passive: false });
@@ -759,13 +734,13 @@ class ScratchHeart {
         const pos = this.getMousePos(e);
         this.ctx.globalCompositeOperation = 'destination-out';
         this.ctx.beginPath();
-        this.ctx.arc(pos.x, pos.y, this.width * 0.22, 0, Math.PI * 2);
+        this.ctx.arc(pos.x, pos.y, this.width * 0.12, 0, Math.PI * 2);
         this.ctx.fill();
-        if (Math.random() > 0.2) this.checkProgress();
+        if (Math.random() > 0.15) this.checkProgress();
     }
     checkProgress() {
         if (this.revealed) return;
-        const sampleRate = 32; 
+        const sampleRate = 32;
         const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
         const pixels = imageData.data;
         let transparentPixels = 0;
@@ -773,7 +748,7 @@ class ScratchHeart {
             if (pixels[i] < 128) transparentPixels++;
         }
         const totalPixels = pixels.length / sampleRate;
-        if ((transparentPixels / totalPixels) * 100 > 45) {
+        if ((transparentPixels / totalPixels) * 100 > 40) {
             this.revealAll();
         }
     }
@@ -787,61 +762,49 @@ class ScratchHeart {
     }
 }
 
-function initScratchHearts() {
-    let revealedHeartsCount = 0;
-    const totalHearts = 3;
-
-    function checkAllRevealed() {
-        revealedHeartsCount++;
-        if (revealedHeartsCount === totalHearts) {
-            const heartsRow = document.getElementById('heartsRow');
-            if (heartsRow) heartsRow.classList.add('unlocked');
-            
-            const surpriseMsg = document.getElementById('surpriseMessage');
-            if (surpriseMsg) {
-                setTimeout(() => { 
-                    surpriseMsg.classList.add('revealed');
-                    startCountdown(); // Triggers the countdown display
-                }, 500);
-            }
-
-            // Rich Canvas Confetti Explosion
+function initScratchCard() {
+    function onRevealed() {
+        const surpriseMsg = document.getElementById('surpriseMessage');
+        if (surpriseMsg) {
             setTimeout(() => {
-                const duration = 3000; // 3 seconds of confetti
-                const end = Date.now() + duration;
-                
-                // Color palette matching the Terracotta/Gold aesthetic
-                const colors = ['#B85940', '#C9963E', '#E8C07A', '#FFFFFF'];
-
-                (function frame() {
-                    confetti({
-                        particleCount: 5,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0, y: 0.6 },
-                        colors: colors,
-                        zIndex: 9999
-                    });
-                    confetti({
-                        particleCount: 5,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1, y: 0.6 },
-                        colors: colors,
-                        zIndex: 9999
-                    });
-
-                    if (Date.now() < end) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
-            }, 800);
+                surpriseMsg.classList.add('revealed');
+                startCountdown();
+            }, 500);
         }
+
+        setTimeout(() => {
+            const duration = 3000;
+            const end = Date.now() + duration;
+            const colors = ['#B85940', '#C9963E', '#E8C07A', '#FFFFFF'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.6 },
+                    colors: colors,
+                    zIndex: 9999
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.6 },
+                    colors: colors,
+                    zIndex: 9999
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }, 800);
+
+        startAutoScrollChain();
     }
 
-    new ScratchHeart('scratchCanvas1', 'heartContainer1', checkAllRevealed);
-    new ScratchHeart('scratchCanvas2', 'heartContainer2', checkAllRevealed);
-    new ScratchHeart('scratchCanvas3', 'heartContainer3', checkAllRevealed);
+    new ScratchCard('scratchCanvas', 'scratchCard', onRevealed);
 }
 
 /* ================================================================
@@ -897,8 +860,8 @@ function revealMain() {
     document.body.style.overflow = 'auto';
     initReveal(); initEventAutoExpand(); 
     
-    // Initialize the hearts logic
-    if(!scratchInitialized) { initScratchHearts(); scratchInitialized = true; }
+    // Initialize the scratch card logic
+    if(!scratchInitialized) { initScratchCard(); scratchInitialized = true; }
     
     setTimeout(() => {
         window.addEventListener('wheel', handleUserInteraction, { passive: true });
@@ -915,7 +878,25 @@ function revealMain() {
                 smoothScrollTo(targetY, 2500);
             }
         }
-    }, 5000);
+    }, 20000);
+}
+
+function startAutoScrollChain() {
+    userInteracted = false;
+    const sections = ['memories-section', 'map-section', 'footer-section'];
+    let idx = 0;
+
+    function scrollNext() {
+        if (userInteracted || idx >= sections.length) return;
+        const section = document.getElementById(sections[idx]);
+        if (!section) { idx++; scrollNext(); return; }
+        const targetY = section.getBoundingClientRect().top + window.scrollY + (section.offsetHeight / 2) - (window.innerHeight / 2);
+        smoothScrollTo(targetY, 2500);
+        idx++;
+        setTimeout(scrollNext, 2500 + 7000);
+    }
+
+    setTimeout(scrollNext, 12000);
 }
 
 gate.addEventListener('click', async () => {
